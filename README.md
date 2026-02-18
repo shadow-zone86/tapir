@@ -1,75 +1,46 @@
-# Nuxt Minimal Starter
+# Tapir
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Каталог товаров на Nuxt 4. Архитектура FSD — shared, entities, features, widgets, app.
 
-## Setup
+**Стек:** Nuxt 4, Pinia, Vitest, ESLint, Stylelint, Husky.
 
-Make sure to install dependencies:
+## Запуск
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+Приложение на http://localhost:3000
 
-Build the application for production:
+## Команды
 
-```bash
-# npm
-npm run build
+- `npm run dev` — разработка
+- `npm run build` — сборка
+- `npm run build:analyze` — сборка с анализом бандла (stats.html)
+- `npm run typecheck` — проверка типов
+- `npm run lint` / `npm run lint:style` — линтеры
+- `npm run test` — тесты
+- `npm run storybook` — storybook на 6006
+- `npm run hooks:install` — если pre-commit перестал срабатывать
 
-# pnpm
-pnpm build
+## Pre-commit
 
-# yarn
-yarn build
+Перед каждым коммитом прогоняются lint-staged, полный lint, typecheck, тесты и build. Пока что-то падает — коммит не пройдёт.
 
-# bun
-bun run build
+## Структура
+
+```
+src/
+├── app/       — layouts, plugins, types
+├── pages/     — Страницы ("Главная", "Каталог")
+├── widgets/   — Catalog, Header, Footer
+├── features/  — load more, retry, favorite, header-*
+├── entities/  — Product
+└── shared/    — UI, стили, composables
 ```
 
-Locally preview production build:
+## Ссылки
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- [FSD — Feature-Sliced Design](https://feature-sliced.design/)
+- [Conventional Commits](https://www.conventionalcommits.org/)
