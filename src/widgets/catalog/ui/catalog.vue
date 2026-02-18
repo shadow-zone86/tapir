@@ -22,7 +22,10 @@
       Нет товаров
     </div>
 
-    <CatalogLoadMore :catalog-state="catalogLoadMoreState" />
+    <ClientOnly>
+      <CatalogLoadMore :catalog-state="catalogLoadMoreState" />
+      <template #fallback />
+    </ClientOnly>
 
     <CatalogRetry :catalog-state="catalogRetryState" />
   </div>
@@ -51,7 +54,10 @@ const limit = CATALOG_PAGE_LIMIT
 
 const fetchError = ref<unknown>(null)
 
-await useAsyncData('catalog-products', () => store.fetch(1, limit), {
+await useAsyncData('catalog-products', async () => {
+  await store.fetch(1, limit)
+  return { products: products.value }
+}, {
   server: true
 })
 

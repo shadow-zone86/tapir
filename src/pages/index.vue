@@ -6,6 +6,10 @@
 
 <script setup lang="ts">
 import { HomeHero } from '@/widgets/home-hero'
+
+useSeoMeta({
+  title: 'Главная — Tapir'
+})
 </script>
 
 <style lang="scss" scoped>
