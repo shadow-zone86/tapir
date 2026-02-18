@@ -3,7 +3,15 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "typecheck": "nuxi typecheck",
+    "test": "vitest run",
+    "lint": "eslint .",
+    "lint:style": "stylelint \"src/**/*.{css,scss,vue}\"",
+    "test:watch": "vitest",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
     "build": "nuxt build",
+    "build:analyze": "ANALYZE=1 nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -11,12 +19,31 @@
   },
   "dependencies": {
     "@fontsource/golos-text": "^5.2.8",
+    "@nuxt/eslint": "^1.15.1",
+    "@pinia/nuxt": "^0.11.3",
     "nuxt": "^4.3.1",
     "nuxt-aos": "^1.2.6",
+    "pinia": "^3.0.4",
     "vue": "^3.5.28",
     "vue-router": "^4.6.4"
   },
   "devDependencies": {
-    "sass": "^1.97.3"
+    "@eslint-community/eslint-plugin-eslint-comments": "^4.6.0",
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/addon-links": "^8.6.17",
+    "@storybook/blocks": "^8.6.14",
+    "@storybook/test": "^8.6.15",
+    "@storybook/vue3-vite": "^8.6.17",
+    "@types/node": "^25.2.3",
+    "@vue/test-utils": "^2.4.6",
+    "happy-dom": "^20.6.2",
+    "postcss-html": "^1.8.1",
+    "rollup-plugin-visualizer": "^6.0.5",
+    "sass": "^1.97.3",
+    "storybook": "^8.6.17",
+    "stylelint": "^17.3.0",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "stylelint-scss": "^7.0.0",
+    "vitest": "^3.2.4"
   }
 }
