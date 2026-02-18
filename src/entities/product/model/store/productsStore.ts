@@ -1,8 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { API_BASE } from '@/shared/config'
 import type { ProductDto } from '../types.dto'
-import { createGetProductsService } from '../../api/getProductsService'
 import { mapProductsApiToStoreDto } from '../../lib/mappers'
 
 export const useProductsStore = defineStore('products', () => {
@@ -19,8 +17,7 @@ export const useProductsStore = defineStore('products', () => {
   }
 
   async function fetch(page: number, limit: number): Promise<void> {
-    const requestFetch = useRequestFetch()
-    const service = createGetProductsService(requestFetch, API_BASE)
+    const service = useNuxtApp().$getProductsService
     isLoading.value = true
     error.value = false
     try {

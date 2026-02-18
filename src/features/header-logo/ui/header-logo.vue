@@ -8,7 +8,7 @@
 .header-logo {
   width: 2.5rem;
   height: 2.5rem;
-  background: $color-accent;
+  background: $color-red;
   flex-shrink: 0;
 }
 </style>
