@@ -10,5 +10,10 @@
   height: 2.5rem;
   background: $color-red;
   flex-shrink: 0;
+  transition: transform 0.5s ease;
+
+  &:hover {
+    transform: rotate(360deg);
+  }
 }
 </style>

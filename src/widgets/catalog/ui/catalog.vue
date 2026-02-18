@@ -36,9 +36,10 @@ import { storeToRefs } from 'pinia'
 import { useProductsStore, ProductCard } from '@/entities/product'
 import { ProductFavorite } from '@/features/product-favorite'
 import { CatalogLoadMore } from '@/features/catalog-load-more'
+import type { CatalogLoadMoreState } from '@/features/catalog-load-more/model/types'
 import { CatalogRetry } from '@/features/catalog-retry'
+import type { CatalogRetryState } from '@/features/catalog-retry/model/types'
 import { CATALOG_PAGE_LIMIT } from '../config/constants'
-import type { CatalogLoadMoreState, CatalogRetryState } from '../model/types'
 
 interface CatalogProps {
   title?: string

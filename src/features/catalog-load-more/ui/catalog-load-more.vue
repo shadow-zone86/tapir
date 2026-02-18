@@ -14,23 +14,15 @@
 </template>
 
 <script setup lang="ts">
-import type { Product } from '@/entities/product'
 import { Button } from '@/shared/ui/button'
-import type { Ref } from 'vue'
 import { LOADING_DELAY_MS } from '../config/constants'
+import type { CatalogLoadMoreState } from '../model/types'
 
-interface CatalogState {
-  products: Ref<Product[]>
-  currentPage: Ref<number>
-  totalPages: Ref<number>
-  error: Ref<boolean>
-  fetchProducts: (page: number, limit: number) => Promise<void>
-  limit: number
-  pending: Ref<boolean>
-  fetchError: Ref<unknown>
+interface CatalogLoadMoreProps {
+  catalogState: CatalogLoadMoreState
 }
 
-const props = defineProps<{ catalogState: CatalogState }>()
+const props = defineProps<CatalogLoadMoreProps>()
 
 const state = toRef(props, 'catalogState')
 
