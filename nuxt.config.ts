@@ -10,6 +10,28 @@ const scssPaths = path.resolve(srcDir, 'shared/assets/scss')
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   srcDir: 'src',
+
+  runtimeConfig: {
+    public: {
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://tapir.ws'
+    }
+  },
+
+  app: {
+    head: {
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+      htmlAttrs: { lang: 'ru' },
+      title: 'Tapir',
+      meta: [
+        { name: 'description', content: 'Tapir — каталог товаров' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ]
+    }
+  },
+
   dir: {
     layouts: 'app/layouts',
     plugins: 'app/plugins',
