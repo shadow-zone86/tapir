@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="app">
     <PageLoader :loading="isLoading" />
     <div
-      class="app-content"
-      :style="isLoading ? { visibility: 'hidden' } : undefined"
+      class="app__content"
+      :style="contentStyle"
     >
       <NuxtLayout>
         <NuxtRouteAnnouncer />
@@ -18,6 +18,10 @@ import { PageLoader } from '@/shared/ui/page-loader'
 import { usePageLoad } from '@/shared/lib/composables/usePageLoad'
 
 const { isLoading } = usePageLoad()
+
+const contentStyle = computed(() =>
+  isLoading.value ? { visibility: 'hidden' as const } : undefined
+)
 </script>
 
 <style lang="scss" scoped></style>

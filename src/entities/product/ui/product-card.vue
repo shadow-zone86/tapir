@@ -40,9 +40,11 @@
 <script setup lang="ts">
 import type { Product } from '@/entities/product'
 
-const props = defineProps<{
+interface ProductCardProps {
   product: Product
-}>()
+}
+
+const props = defineProps<ProductCardProps>()
 
 const imageLoaded = ref<boolean>(false)
 const imgRef = ref<HTMLImageElement | null>(null)

@@ -2,7 +2,7 @@ import type { ProductsResponseApi } from '../../model/types'
 import type { ProductDto, ProductsResponseDto } from '../../model/types.dto'
 
 function mapProductApiToDto(api: ProductsResponseApi['products'][number]): ProductDto {
-  const priceX2 = Math.ceil(api.price / 2)
+  const priceX2: number = Math.ceil(api.price / 2)
   return {
     id: api.id,
     name: api.name,
