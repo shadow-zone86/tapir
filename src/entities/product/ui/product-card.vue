@@ -1,5 +1,5 @@
 <template>
-  <div class="product-card">
+  <a href="#" class="product-card">
     <div class="product-card__image-wrap">
       <div
         v-show="!imageLoaded"
@@ -16,7 +16,12 @@
         @load="imageLoaded = true"
         @error="imageLoaded = true"
       >
-      <span v-if="$slots.favorite" class="product-card__favorite" aria-hidden="true">
+      <span
+        v-if="$slots.favorite"
+        class="product-card__favorite"
+        aria-hidden="true"
+        @click.stop
+      >
         <slot name="favorite" />
       </span>
     </div>
@@ -29,7 +34,7 @@
       </span>
     </div>
     <p class="product-card__name">{{ product.name }}</p>
-  </div>
+  </a>
 </template>
 
 <script setup lang="ts">
@@ -76,7 +81,6 @@ onMounted(() => {
     border-radius: $spacing-card-radius;
     overflow: hidden;
     @include margin($bottom: $spacing-card-image);
-    background: $color-bg-light;
   }
 
   &__skeleton {

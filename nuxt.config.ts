@@ -44,6 +44,15 @@ export default defineNuxtConfig({
   },
 
   vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'vue-vendor': ['vue', 'vue-router', 'pinia']
+          }
+        }
+      }
+    },
     plugins: process.env.ANALYZE
       ? [visualizer({ open: true, filename: 'stats.html', gzipSize: true }) as any] // eslint-disable-line @typescript-eslint/no-explicit-any
       : [],

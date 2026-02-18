@@ -11,13 +11,17 @@ const mockApiResponse: ProductsResponseApi = {
   products: [{ id: 1, name: 'A', price: 100, image: '' }]
 }
 
+const createMockService = (mockGet: ReturnType<typeof vi.fn>) => ({
+  get: mockGet
+})
+
 describe('productsStore', () => {
-  let mockFetch: ReturnType<typeof vi.fn>
+  let mockGet: ReturnType<typeof vi.fn>
 
   beforeEach(() => {
     setActivePinia(createPinia())
-    mockFetch = vi.fn()
-    vi.stubGlobal('useRequestFetch', () => mockFetch)
+    mockGet = vi.fn()
+    vi.stubGlobal('useNuxtApp', () => ({ $getProductsService: createMockService(mockGet) }))
   })
 
   it('имеет начальное состояние', () => {
@@ -39,7 +43,7 @@ describe('productsStore', () => {
 
   it('fetch при page 1 заменяет products и обновляет пагинацию', async () => {
     const store = useProductsStore()
-    mockFetch.mockResolvedValue(mockApiResponse)
+    mockGet.mockResolvedValue(mockApiResponse)
     await store.fetch(1, 16)
     expect(store.products).toHaveLength(1)
     expect(store.products[0]!.id).toBe(1)
@@ -52,7 +56,7 @@ describe('productsStore', () => {
 
   it('fetch при page > 1 дополняет products', async () => {
     const store = useProductsStore()
-    mockFetch
+    mockGet
       .mockResolvedValueOnce({
         ...mockApiResponse,
         products: [{ id: 1, name: 'A', price: 100, image: '' }],
@@ -75,7 +79,7 @@ describe('productsStore', () => {
 
   it('fetch устанавливает error при ошибке', async () => {
     const store = useProductsStore()
-    mockFetch.mockRejectedValue(new Error('Network error'))
+    mockGet.mockRejectedValue(new Error('Network error'))
     await store.fetch(1, 16)
     expect(store.error).toBe(true)
     expect(store.products).toEqual([])

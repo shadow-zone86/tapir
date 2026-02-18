@@ -2,5 +2,4 @@ export type { ProductApi, ProductsResponseApi, IGetProductsService } from './mod
 export type { ProductDto, ProductsResponseDto } from './model/types.dto'
 export type { ProductDto as Product } from './model/types.dto'
 export { useProductsStore } from './model/store/productsStore'
-export { useProducts } from './lib/composables'
 export { default as ProductCard } from './ui/product-card.vue'
