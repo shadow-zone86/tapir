@@ -9,7 +9,7 @@
         :key="product.id"
         class="catalog__card"
         data-aos="fade-up"
-        :data-aos-delay="(index % 2) * 80 + Math.floor(index / 2) * 40"
+        :data-aos-delay="aosDelays[index]"
       >
         <ProductCard :product="product">
           <template #favorite>
@@ -23,11 +23,11 @@
     </div>
 
     <ClientOnly>
-      <CatalogLoadMore :catalog-state="catalogLoadMoreState" />
+      <CatalogLoadMore :catalog-state="catalogState" />
       <template #fallback />
     </ClientOnly>
 
-    <CatalogRetry :catalog-state="catalogRetryState" />
+    <CatalogRetry :catalog-state="catalogState" />
   </div>
 </template>
 
@@ -36,9 +36,8 @@ import { storeToRefs } from 'pinia'
 import { useProductsStore, ProductCard } from '@/entities/product'
 import { ProductFavorite } from '@/features/product-favorite'
 import { CatalogLoadMore } from '@/features/catalog-load-more'
-import type { CatalogLoadMoreState } from '@/features/catalog-load-more/model/types'
 import { CatalogRetry } from '@/features/catalog-retry'
-import type { CatalogRetryState } from '@/features/catalog-retry/model/types'
+import type { CatalogState } from '@/shared/model/catalog/types'
 import { CATALOG_PAGE_LIMIT } from '../config/constants'
 
 interface CatalogProps {
@@ -62,25 +61,19 @@ await useAsyncData('catalog-products', async () => {
   server: true
 })
 
-const catalogLoadMoreState: CatalogLoadMoreState = {
-  products,
-  currentPage,
-  totalPages,
-  error,
-  fetchProducts: (page, lim) => store.fetch(page, lim),
-  limit,
-  pending: isLoading,
-  fetchError
-}
+const aosDelays = computed(() =>
+  products.value.map((_, index) => (index % 2) * 80 + Math.floor(index / 2) * 40)
+)
 
-const catalogRetryState: CatalogRetryState = {
+const catalogState: CatalogState = {
   products,
   currentPage,
   totalPages,
   error,
   fetchProducts: (page, lim) => store.fetch(page, lim),
   limit,
-  fetchError
+  fetchError,
+  pending: isLoading
 }
 </script>
 

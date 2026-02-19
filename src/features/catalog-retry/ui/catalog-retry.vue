@@ -11,11 +11,11 @@
 
 <script setup lang="ts">
 import { Button } from '@/shared/ui/button'
-import { LOADING_DELAY_MS } from '../config/constants'
-import type { CatalogRetryState } from '../model/types'
+import { LOADING_DELAY_MS } from '@/shared/config'
+import type { CatalogState } from '@/shared/model/catalog/types'
 
 interface CatalogRetryProps {
-  catalogState: CatalogRetryState
+  catalogState: CatalogState
 }
 
 const props = defineProps<CatalogRetryProps>()

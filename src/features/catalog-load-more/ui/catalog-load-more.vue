@@ -15,11 +15,11 @@
 
 <script setup lang="ts">
 import { Button } from '@/shared/ui/button'
-import { LOADING_DELAY_MS } from '../config/constants'
-import type { CatalogLoadMoreState } from '../model/types'
+import { LOADING_DELAY_MS } from '@/shared/config'
+import type { CatalogState } from '@/shared/model/catalog/types'
 
 interface CatalogLoadMoreProps {
-  catalogState: CatalogLoadMoreState
+  catalogState: CatalogState
 }
 
 const props = defineProps<CatalogLoadMoreProps>()
@@ -35,7 +35,7 @@ const hasError = computed(() => state.value.error.value || !!state.value.fetchEr
 
 const showMoreVisible = computed(
   () =>
-    !state.value.pending.value &&
+    !state.value.pending?.value &&
     state.value.products.value.length > 0 &&
     state.value.currentPage.value < state.value.totalPages.value &&
     !loadingMore.value &&
